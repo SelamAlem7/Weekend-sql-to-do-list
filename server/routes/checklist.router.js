@@ -50,43 +50,37 @@ router.delete('/:id', (req,res) => {//this corresponds to the URL on the client'
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /////////////////////////END 'DELETE' ROUTER//////////////////////////////////////
 
+/////////////////////////START 'POST' ROUTER//////////////////////////////////////
+router.post('/', (req, res) => {
+    console.log('inside POST router!');
+
+//Creating a newTask variable & giving it the value of the users input:
+    let newTask = req.body;
+    console.log('Your new book is:', newTask);
+
+    let queryText = `INSERT INTO "checklist" ("task", "due_date")
+                    VALUES ($1, $2);`;
+    
+    pool.query(queryText, [newTask.task, newTask.due_date])
+    .then(result => {
+        res.sendStatus(201);
+        //console.log('Your new book is:', newTask);
+    })
+    .catch(error => {
+        console.log('Error adding new book - POST', error);
+        res.sendStatus(500);
+    });
+   
+});
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////////END 'GET' ROUTER//////////////////////////////////////
+/////////////////////////END 'POST' ROUTER//////////////////////////////////////
 /////////////////////////END 'GET' ROUTER//////////////////////////////////////
 
 
