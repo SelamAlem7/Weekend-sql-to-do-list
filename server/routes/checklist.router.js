@@ -36,7 +36,7 @@ router.delete('/:id', (req,res) => {//this corresponds to the URL on the client'
     WHERE "id" = $1;
     `;
 
-    const sqlValue = [taskToDelete];
+    const sqlValues = [taskToDelete];
 
     pool.query(sqlText, sqlValues)
     .then((result) => {

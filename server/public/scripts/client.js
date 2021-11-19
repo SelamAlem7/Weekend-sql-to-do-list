@@ -46,7 +46,7 @@ function deleteTask() {
     $.ajax({//here we are requesting our server to delete:
         type: 'DELETE',
         url: `/checklist/${taskToDelete}`
-    }).then((respond) => {
+    }).then((response) => {
         console.log('working delete function', response);
         renderTasks();
         
