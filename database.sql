@@ -7,7 +7,7 @@ CREATE TABLE "checklist" (
 );
 
 INSERT INTO "checklist" 
-	("task", "due_date", "completed") 
+	("task", "due_date") 
 VALUES 
 	('Weekend Challenge', '11-22-2021'),
 	('Attend Networking Event', '11-19-2021'),

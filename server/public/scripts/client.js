@@ -1,17 +1,26 @@
 
 /////////////////////////////////////////////////////////
 console.log('client.js working!!');
+/////////////////////////////////////////////////////////
 
 $(document).ready(function(){
     console.log('JQUERY in the house!!');
- $('#taskShelf').on('click', 'button', deleteTask);
- $('#addButton').on('click', handleAddTaskButton);
-
-    renderTasks();//shows all the tasks in the checklist 
-
+    refreshTasks();
+    addClickHandlers();
+    //renderTasks();//shows all the tasks in the checklist 
 });
 
 /////////////////////////////////////////////////////////
+
+/////////////////////////START 'clickHandlers' FUNCTION/////////////////////////////
+function addClickHandlers() {
+    $('#addButton').on('click', handleAddTaskButton);
+    $('#taskShelf').on('click', 'button', deleteTask);
+    //$('#bookShelf').on('click', '.completedMarker', handleMarkRead);
+  };
+
+
+/////////////////////////END 'clickHandlers' FUNCTION/////////////////////////////
 
 /////////////////////////START 'renderTasks' FUNCTION/////////////////////////////
 //here we will respond to the GET request from router to grab our entire checklist.
@@ -29,7 +38,7 @@ function renderTasks(tasks) {
                 <td>${task.task}</td>
                 <td>${task.due_date}</td>
                 <td><button data-id="${task.id}">DELETE</button></td>
-                <td><button class="completedButton" data-id="${task.id}" data-completed-status="${task.completed}">Completed</button> </td>
+                <td><button class="completedMarker" data-id="${task.id}" data-completed-status="${task.completed}">Completed</button> </td>
                 </tr>
             `);
         }
@@ -81,37 +90,32 @@ function addTask(taskToAdd) {
 /////////////////////////END 'addTask' FUNCTION//////////////////////////////////////
 
 /////////////////////////START 'handleAddTaskButton' FUNCTION//////////////////////////////////////
-function handleAddTaskButton(params) {
+function handleAddTaskButton() {
     console.log('Add button clicked!');
 
-    let task = {};
-    task.task = $('#taskInput').val();
-    task.due_date = $('#dueDateInput').val();
+    let taskAdded = {};
+    taskAdded.task = $('#taskInput').val();
+    taskAdded.due_date = $('#dueDateInput').val();
 
-    addTask(task);
+    addTask(taskAdded);
     
-    console.log('New added task is:', task);
+    console.log('New added task is:', taskAdded);
     
 };
 ///////////////////END 'handleAddTaskButton' FUNCTION//////////////////////////////////////
 
 ///////////////////START 'refreshTasks' FUNCTION//////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function refreshTasks() {
+    $.ajax({
+      type: 'GET',
+      url: '/checklist'
+    }).then(function(response) {
+      console.log(response);
+      renderTasks(response);
+    }).catch(function(error){
+      console.log('error in client GET refreshTasks', error);
+    });
+  }
 
 ///////////////////END 'refreshTasks' FUNCTION//////////////////////////////////////

@@ -2,7 +2,7 @@ const pg = require('pg');
 /////////////////////////////////////////////////////////
 
 const config = {
-  database: 'weekend-to-do-app', 
+  database: 'weekend-to-do-app', //name of database
   host: 'localhost', 
   port: 5432, 
   max: 10, 

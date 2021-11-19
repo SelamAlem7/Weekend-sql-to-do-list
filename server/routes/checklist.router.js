@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         res.send(result.rows)//here we are sending out response from the database to our client
     })
     .catch(error => {
-        console.log('Error in client GET router to get all books', error);
+        console.log('Error in client GET router to get all tasks', error);
         res.sendStatus(500);
  
     });
@@ -58,18 +58,18 @@ router.post('/', (req, res) => {
 
 //Creating a newTask variable & giving it the value of the users input:
     let newTask = req.body;
-    console.log('Your new book is:', newTask);
+    console.log('Your new task is:', newTask);
 
-    let queryText = `INSERT INTO "checklist" ("task", "due_date")
-                    VALUES ($1, $2);`;
+    let queryText = `INSERT INTO "checklist" ("task")
+                     VALUES ($1);`;
     
-    pool.query(queryText, [newTask.task, newTask.due_date])
+    pool.query(queryText, [newTask.task])
     .then(result => {
         res.sendStatus(201);
-        //console.log('Your new book is:', newTask);
+        //console.log('Your new task is:', newTask);
     })
     .catch(error => {
-        console.log('Error adding new book - POST', error);
+        console.log('Error adding new task - POST', error);
         res.sendStatus(500);
     });
    
