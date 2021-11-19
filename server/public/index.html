@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Awesome Reads</title>
+  <script type="text/javascript" src="vendors/jquery.js"></script>
+  <script type="text/javascript" src="scripts/client.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>My To-Do List</h1>
+  </header>
+  <main>
+    <section> 
+      <h3>Add New Task</h3>
+      <label>Task:</label><input type="text" class="inputs" id="taskInput" size="200">
+      <br />
+      <label>Due Date:</label><input type="number" class="inputs" id="dueDateInput" size="50">
+      <br />
+      <label>Completed</label><input type="text" class="inputs" id="completedInput" size="100">
+      <br />
+      <button type="button" id="submitBtn">Add Task</button>
+    </section>
+    <section>
+      <div>
+        <h3 id="TaskList">Task List</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Due Date</th>
+              <th>Completed</th>
+            </tr>
+          </thead>
+          <tbody id="taskShelf">
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
