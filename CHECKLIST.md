@@ -19,6 +19,8 @@
 
 ###### BACK - END:
     * run npm init
+    * run npm install pg
+    * run npm install express
     * make sure "start" (npm start) script exists in out package.json
     * npm install the stuff we need 
         - express
