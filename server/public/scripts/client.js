@@ -80,6 +80,7 @@ function addTask(taskToAdd) {
         renderTasks();
         refreshTasks(); //CREATE FUNCTION
         
+        
     }).catch((error) => {
         console.log('Error in POST client', error);
         alert('Sorry, cannot add Task at this moment.');
@@ -99,6 +100,9 @@ function handleAddTaskButton() {
 
     addTask(taskAdded);
     
+    $('#taskInput').val("");
+    $('#dueDateInput').val(""); //to empty after input
+
     console.log('New added task is:', taskAdded);
     
 };
