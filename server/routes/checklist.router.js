@@ -75,27 +75,32 @@ router.post('/', (req, res) => {
    
 });
 
-
-
-
-
-
 /////////////////////////END 'POST' ROUTER//////////////////////////////////////
-/////////////////////////END 'GET' ROUTER//////////////////////////////////////
 
+/////////////////////////START 'PUT' ROUTER//////////////////////////////////////
+// router.put('/complete/:id', (req, res) => {
+//     console.log( 'inside PUT router', req.params.id);
+//     console.log(req.body);
+  
+//     let taskCompleted = req.params.id;
+//     // let newValue = req.body.read;
+  
+//     let sqlText = `UPDATE "task" SET "complete" = 'TRUE' WHERE "id"=$1`;
+  
+//     pool
+//       .query(sqlText, [taskCompleted])
+//       .then((result) => {
+//         console.log('result is ', result);
+//         res.sendStatus(200);
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//       });
+//   });
 
+/////////////////////////END 'PUT' ROUTER//////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-/////////////////////////END 'GET' ROUTER//////////////////////////////////////
-/////////////////////////END 'GET' ROUTER//////////////////////////////////////
+/////////////////////////END ' ' ROUTER//////////////////////////////////////
 
 
 

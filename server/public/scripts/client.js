@@ -7,7 +7,7 @@ $(document).ready(function(){
     console.log('JQUERY in the house!!');
     refreshTasks();
     addClickHandlers();
-    //renderTasks();//shows all the tasks in the checklist 
+    renderTasks();//shows all the tasks in the checklist 
 });
 
 /////////////////////////////////////////////////////////
@@ -16,8 +16,10 @@ $(document).ready(function(){
 function addClickHandlers() {
     $('#addButton').on('click', handleAddTaskButton);
     $('#taskShelf').on('click', 'button', deleteTask);
-    //$('#bookShelf').on('click', '.completedMarker', handleMarkRead);
-  };
+    //<td><button class="completedMarker" data-id="${task.id}" data-completed-status="${task.completed}">Completed</button> </td>
+
+
+};
 
 
 /////////////////////////END 'clickHandlers' FUNCTION/////////////////////////////
@@ -38,7 +40,6 @@ function renderTasks(tasks) {
                 <td>${task.task}</td>
                 <td>${task.due_date}</td>
                 <td><button data-id="${task.id}">DELETE</button></td>
-                <td><button class="completedMarker" data-id="${task.id}" data-completed-status="${task.completed}">Completed</button> </td>
                 </tr>
             `);
         }
@@ -107,6 +108,47 @@ function handleAddTaskButton() {
     
 };
 ///////////////////END 'handleAddTaskButton' FUNCTION//////////////////////////////////////
+
+
+///////////////////START 'MarkTaskCompleted' FUNCTION//////////////////////////////////////
+
+// function MarkTaskCompleted(params) {
+//     let taskCompleted = $(this).data('/id');
+//     console.log('In MarkTaskCompleted function:',taskCompleted );
+
+//     if (param.completed === false ) {
+//         TaskCompleted(taskCompleted)
+//       }
+//       else {
+//           console.log('Task not completed');
+         
+//       }
+    
+//       renderTasks();
+    
+// }
+
+///////////////////END 'MarkTaskCompleted' FUNCTION//////////////////////////////////////
+
+///////////////////START 'TaskCompleted' FUNCTION//////////////////////////////////////
+
+// function TaskCompleted(taskCompleted) {
+//     console.log('In TaskCompleted function', taskCompleted);
+
+//     $.ajax({
+//         method: 'PUT',
+//         url: `/task/complete/${taskCompleted}`,
+//         data:{
+//             taskCompleted,
+//         },
+//     }).then((response) => {
+//         console.log('Task completed:');
+//         renderTasks();
+        
+//     })
+    
+///////////////////END 'TaskCompleted' FUNCTION//////////////////////////////////////
+
 
 ///////////////////START 'refreshTasks' FUNCTION//////////////////////////////////////
 
