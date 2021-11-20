@@ -1,8 +1,10 @@
+
 CREATE TABLE "checklist" (
 	"id" SERIAL PRIMARY KEY,
 	"task" VARCHAR (250) NOT NULL,
-	"due_date" DATE,
-	"completed" BOOLEAN DEFAULT FALSE
+	"completed" BOOLEAN DEFAULT FALSE,
+	"due_date"  DATE 
+
 
 );
 
