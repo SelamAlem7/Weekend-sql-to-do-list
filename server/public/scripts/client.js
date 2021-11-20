@@ -16,6 +16,7 @@ $(document).ready(function(){
 function addClickHandlers() {
     $('#addButton').on('click', handleAddTaskButton);
     $('#taskShelf').on('click', 'button', deleteTask);
+    $('#completed').on('click', MarkTaskCompleted);
     //<td><button class="completedMarker" data-id="${task.id}" data-completed-status="${task.completed}">Completed</button> </td>
 
 
@@ -37,16 +38,21 @@ function renderTasks(tasks) {
         for (let task of response) {
             $('#taskShelf').append(`
                 <tr>
+                <td id="completed"><button class="completedMarker" " data-completed-status="${task.completed}">Completed</button> </td>
+
                 <td>${task.task}</td>
                 <td>${task.due_date}</td>
                 <td><button data-id="${task.id}">DELETE</button></td>
                 </tr>
+
             `);
         }
     });
     
 }
 /////////////////////////END 'renderTasks' FUNCTION//////////////////////////////////////
+
+
 
 /////////////////////////START 'deleteTask' FUNCTION//////////////////////////////////////
 //now that we have our table showing from the database, we will try to delete a task:
@@ -112,21 +118,21 @@ function handleAddTaskButton() {
 
 ///////////////////START 'MarkTaskCompleted' FUNCTION//////////////////////////////////////
 
-// function MarkTaskCompleted(params) {
-//     let taskCompleted = $(this).data('/id');
-//     console.log('In MarkTaskCompleted function:',taskCompleted );
+function MarkTaskCompleted(params) {
+    let taskCompleted = $(this).data('/id');
+    console.log('In MarkTaskCompleted function:',taskCompleted );
 
-//     if (param.completed === false ) {
-//         TaskCompleted(taskCompleted)
-//       }
-//       else {
-//           console.log('Task not completed');
+    if (param.completed === false ) {
+        TaskCompleted(taskCompleted)
+      }
+      else {
+          console.log('Task not completed');
          
-//       }
+      }
     
-//       renderTasks();
+      renderTasks();
     
-// }
+}
 
 ///////////////////END 'MarkTaskCompleted' FUNCTION//////////////////////////////////////
 
