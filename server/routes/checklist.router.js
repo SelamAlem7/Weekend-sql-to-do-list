@@ -57,46 +57,62 @@ router.post('/', (req, res) => {
     console.log('inside POST router!');
 
 //Creating a newTask variable & giving it the value of the users input:
-    let newTask = req.body;
-    console.log('Your new task is:', newTask);
+let newTask = req.body;
+console.log('Your new task is:', newTask);
 
-    let queryText = `INSERT INTO "checklist" ("task")
-                     VALUES ($1);`;
-    
-    pool.query(queryText, [newTask.task])
-    .then(result => {
-        res.sendStatus(201);
-        //console.log('Your new task is:', newTask);
-    })
-    .catch(error => {
-        console.log('Error adding new task - POST', error);
-        res.sendStatus(500);
-    });
+let queryText = `INSERT INTO "checklist" ("task", "due_date", "completed") 
+                 VALUES ($1,$2, $3);`;
+
+
+let queryValues = [
+    newTask.task,
+    newTask.due_date,
+    newTask.completed
+];
+
+pool.query(queryText, queryValues)
+.then(result => {
+    res.sendStatus(201);
+    //console.log('Your new task is:', newTask);
+})
+.catch(error => {
+    console.log('Error adding new task - POST', error);
+    res.sendStatus(500);
+});
    
 });
 
 /////////////////////////END 'POST' ROUTER//////////////////////////////////////
 
 /////////////////////////START 'PUT' ROUTER//////////////////////////////////////
-// router.put('/complete/:id', (req, res) => {
-//     console.log( 'inside PUT router', req.params.id);
-//     console.log(req.body);
+router.put('/complete/:id', (req, res) => {
+    console.log( 'inside PUT router', req.params.id);
+    //console.log(req.body);
+  const taskToUpdate = req.params.id;
+    let currentCompletedStatus = req.body.currentCompletedStatus;
+    currentCompletedStatus = 'N';
+    // let newValue = req.body.read;
   
-//     let taskCompleted = req.params.id;
-//     // let newValue = req.body.read;
-  
-//     let sqlText = `UPDATE "task" SET "complete" = 'TRUE' WHERE "id"=$1`;
-  
-//     pool
-//       .query(sqlText, [taskCompleted])
-//       .then((result) => {
-//         console.log('result is ', result);
-//         res.sendStatus(200);
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       });
-//   });
+    const sqlText = `
+        UPDATE "checklist" 
+          SET "completed" = $1
+          WHERE "id" = $2;
+        `;
+
+        const sqlValues = [
+            currentCompletedStatus,
+            taskToUpdate
+          ];
+        
+    pool.query(sqlText, sqlValues)
+      .then((result) => {
+        console.log('result is ', result);
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 
 /////////////////////////END 'PUT' ROUTER//////////////////////////////////////
 

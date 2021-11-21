@@ -1,16 +1,67 @@
 body {
-    background-color: burlywood;
+    background-color: coral;
+
+  }
+
+/* ----------------------------------------------------------------------- */
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: initial;
+  }
+
+h1 span {
+    font-family: cursive;
+    position: relative;
+  }
+
+h1 span::before,
+
+h1 span::after {
+    vertical-align: middle;
+    display: inline-block;
+  }
+h1 span::after {
+    transform: scaleX(-1);
+  }
+/* ----------------------------------------------------------------------- */
+.table {
+    font-family: serif;
+    text-align: initial;
+    padding: auto;
+    color: rgb(51, 18, 50);
+    border: 8px double #CA6436;
+    border-radius: 8px 0px 0px 0px;
+    size-adjust: 90%;
 }
 
-/////////////////////////////////////////////////////////
+/* ----------------------------------------------------------------------- */
+
+button {
+    color: rgb(221, 139, 62);
+    background-color: rgb(112, 57, 20);
+}
+
+/* ----------------------------------------------------------------------- */
+.taskInput {
+    width: 400px; height: 20px
+}
 
 .inputs {
-    merg
+    width: 100px; height: 20px
 }
-/////////////////////////////////////////////////////////
+
+/* ----------------------------------------------------------------------- */
+
+
+
+
+/* ----------------------------------------------------------------------- */
 
 
 
 
 
-/////////////////////////////////////////////////////////
+/* ----------------------------------------------------------------------- */
