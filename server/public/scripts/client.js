@@ -81,19 +81,18 @@ function deleteTask() {
 /////////////////////////END 'deleteTask' FUNCTION//////////////////////////////////////
 
 /////////////////////////START 'addTask' FUNCTION//////////////////////////////////////
-function addTask(taskToAdd) {
+function addTask(newTask) {
     console.log('inside addTask function POST');
-
+    
     $.ajax({
         type: 'POST',
         url: '/checklist',
-        data: taskToAdd,
+        data: newTask,
     })
     .then((response) => {
         console.log('response client POST ', response);
         renderTasks();
         refreshTasks(); //CREATE FUNCTION
-        
         
     }).catch((error) => {
         console.log('Error in POST client', error);
@@ -135,7 +134,7 @@ function markTaskCompleted(param) {
     
     // let completedTask = $(this).data('/id')
     // console.log('In markTaskCompleted  LET function:',completedTask );
-    if (param.completed = false ) {
+    if (param.completed === 'N' ) {
          console.log('in IF function completeed', param);
          //renderTasks();
       }

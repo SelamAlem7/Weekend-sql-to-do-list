@@ -16,16 +16,17 @@
   <main>
     <section> 
       <h3>Add New Task</h3>
-      <label>Task:</label><input type="text" class="inputs" id="taskInput" size="200">
+      <label>Task:</label><input type="text" class="taskInput" id="taskInput" size="200" placeholder="task to complete">
       <br />
-      <label>Due Date:</label><input type="number" class="inputs" id="dueDateInput" size="50">
+      <label>Due Date:</label><input type="number" class="inputs" id="dueDateInput" size="50" placeholder="due date">
       <br />
-      <button type="button" id="addButton">Add Task!</button>
+      <label>Completed:</label><input type="text" class="inputs" id="completedInput" value="" placeholder="N or Y">
+      <button type="button" id="addButton" class="button">Add Task!</button>
     </section>
     <section>
       <div>
         <h3 id="TaskList">Task List</h3>
-        <table>
+        <table  class="table">
           <thead>
             <tr>
               <th>Task</th>

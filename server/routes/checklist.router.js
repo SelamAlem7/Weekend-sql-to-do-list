@@ -57,21 +57,28 @@ router.post('/', (req, res) => {
     console.log('inside POST router!');
 
 //Creating a newTask variable & giving it the value of the users input:
-    let newTask = req.body;
-    console.log('Your new task is:', newTask);
+let newTask = req.body;
+console.log('Your new task is:', newTask);
 
-    let queryText = `INSERT INTO "checklist" ("task", "due_date)
-                     VALUES ($1, %2);`;
-    
-    pool.query(queryText, [newTask.task, newTask.due_date])
-    .then(result => {
-        res.sendStatus(201);
-        //console.log('Your new task is:', newTask);
-    })
-    .catch(error => {
-        console.log('Error adding new task - POST', error);
-        res.sendStatus(500);
-    });
+let queryText = `INSERT INTO "checklist" ("task", "due_date", "completed") 
+                 VALUES ($1,$2, $3);`;
+
+
+let queryValues = [
+    newTask.task,
+    newTask.due_date,
+    newTask.completed
+];
+
+pool.query(queryText, queryValues)
+.then(result => {
+    res.sendStatus(201);
+    //console.log('Your new task is:', newTask);
+})
+.catch(error => {
+    console.log('Error adding new task - POST', error);
+    res.sendStatus(500);
+});
    
 });
 
@@ -83,7 +90,7 @@ router.put('/complete/:id', (req, res) => {
     //console.log(req.body);
   const taskToUpdate = req.params.id;
     let currentCompletedStatus = req.body.currentCompletedStatus;
-    currentCompletedStatus = true;
+    currentCompletedStatus = 'N';
     // let newValue = req.body.read;
   
     const sqlText = `
